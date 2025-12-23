@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms_app/pages/tugas_page.dart';
+import 'package:lms_app/pages/kuis_page.dart';
 
 class MateriPage extends StatelessWidget {
   const MateriPage({Key? key}) : super(key: key);
@@ -18,6 +19,15 @@ class MateriPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const TugasPage()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.quiz),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const KuisPage()),
               );
             },
           ),
