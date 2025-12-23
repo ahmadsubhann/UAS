@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms_app/pages/tugas_page.dart';
 
 class MateriPage extends StatelessWidget {
   const MateriPage({Key? key}) : super(key: key);
@@ -10,6 +11,17 @@ class MateriPage extends StatelessWidget {
         title: const Text('Materi'),
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.assignment),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TugasPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
