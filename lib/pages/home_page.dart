@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms_app/pages/notifikasi_page.dart';
+import 'package:lms_app/pages/detail_pengumuman_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -95,13 +96,39 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 24),
 
               // Pengumuman terakhir
-              const Text(
-                'Pengumuman Terakhir',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Pengumuman Terakhir',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                      color: Colors.green,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailPengumumanPage(
+                            title: 'Perpanjangan Deadline Tugas',
+                            adminName: 'Admin LMS',
+                            dateTime: '15 Des 2025',
+                            content:
+                                'Deadline tugas pemrograman mobile diperpanjang hingga akhir bulan ini.',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 12),
               _buildAnnouncementCard(
