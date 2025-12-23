@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms_app/pages/edit_profil_page.dart';
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({Key? key}) : super(key: key);
@@ -88,7 +89,14 @@ class ProfilPage extends StatelessWidget {
                 Colors.orange,
                 () {},
               ),
-              _buildMenuCard('Edit Profile', Icons.edit, Colors.green, () {}),
+              _buildMenuCard('Edit Profile', Icons.edit, Colors.green, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const EditProfilPage(),
+                  ),
+                );
+              }),
               _buildMenuCard('Log Out', Icons.logout, Colors.red, () {}),
             ],
           ),
