@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms_app/pages/hasil_kuis_page.dart';
 
 class KuisPage extends StatelessWidget {
   const KuisPage({Key? key}) : super(key: key);
@@ -169,7 +170,13 @@ class KuisPage extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Aksi untuk mengirim jawaban
+                  // Aksi untuk mengirim jawaban - sekarang akan membuka halaman hasil kuis
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HasilKuisPage(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
