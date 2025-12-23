@@ -22,12 +22,6 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.school),
-            onPressed: () {
-              // Navigasi ke Kelas Saya
-            },
-          ),
         ],
       ),
       body: SingleChildScrollView(
