@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms_app/pages/notifikasi_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,7 +12,15 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
         actions: [
-          IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotifikasiPage()),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.school),
             onPressed: () {
