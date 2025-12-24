@@ -40,7 +40,7 @@ class ProfilPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      'Budi Santoso',
+                      'Ahmad Subhan',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -66,8 +66,8 @@ class ProfilPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              _buildInfoCard('Nama Lengkap', 'Budi Santoso'),
-              _buildInfoCard('Email Address', 'budi.santoso@example.com'),
+              _buildInfoCard('Nama Lengkap', 'Ahmad Subhan'),
+              _buildInfoCard('Email Address', 'ahmad.subhan@example.com'),
               _buildInfoCard('Program Studi', 'Teknik Informatika'),
               _buildInfoCard('Fakultas', 'Fakultas Teknik'),
               _buildInfoCard('First Access to Site', '12 Januari 2024'),

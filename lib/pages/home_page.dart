@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     const Text(
-                      'Budi Santoso',
+                      'Ahmad Subhan',
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.green,

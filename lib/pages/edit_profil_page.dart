@@ -18,9 +18,9 @@ class _EditProfilPageState extends State<EditProfilPage> {
   void initState() {
     super.initState();
     // Set nilai awal untuk contoh
-    _firstNameController.text = 'Budi';
-    _lastNameController.text = 'Santoso';
-    _emailController.text = 'budi.santoso@example.com';
+    _firstNameController.text = 'Ahmad';
+    _lastNameController.text = 'Subhan';
+    _emailController.text = 'ahmad.subhan@example.com';
     _countryController.text = 'Indonesia';
     _descriptionController.text = 'Mahasiswa Teknik Informatika';
   }
