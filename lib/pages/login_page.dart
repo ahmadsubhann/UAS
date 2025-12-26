@@ -1,237 +1,326 @@
 import 'package:flutter/material.dart';
 import 'package:lms_app/main_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _rememberMe = false;
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 40),
-
-                // Logo / Judul
-                Container(
-                  margin: const EdgeInsets.only(bottom: 40),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.green[200],
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: const Icon(
-                          Icons.school,
-                          size: 50,
-                          color: Colors.green,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Learning Management System',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          color: Color(0xFF2C3E50),
+          image: DecorationImage(
+            image: NetworkImage(
+              'https://img.freepik.com/free-vector/modern-office-desk-concept-with-flat-design_23-2147983002.jpg',
+            ),
+            fit: BoxFit.cover,
+            opacity: 0.1,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: 400,
+                minWidth: 300,
+              ),
+              width: MediaQuery.of(context).size.width * 0.9,
+              margin: const EdgeInsets.symmetric(vertical: 40),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 20,
+                    offset: const Offset(0, 10),
                   ),
-                ),
-
-                // Input Email
-                Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 14,
-                      ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 40),
+                  
+                  // Circular Outer Frame for Logo (as seen in image)
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.withOpacity(0.2), width: 1.5),
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                ),
-
-                // Input Password
-                Container(
-                  margin: const EdgeInsets.only(bottom: 24),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: const Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                    padding: const EdgeInsets.all(8),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green[200],
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 14,
-                      ),
-                    ),
-                    obscureText: true,
-                  ),
-                ),
-
-                // Tombol Log In
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Aksi login - sekarang akan membawa ke halaman utama
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => const MainPage(),
-                        ),
-                        (Route<dynamic> route) => false,
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Text(
-                      'Log In',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                      child: const Icon(
+                        Icons.school,
+                        size: 50,
+                        color: Colors.green,
                       ),
                     ),
                   ),
-                ),
-
-                const SizedBox(height: 16),
-
-                // Link Bantuan
-                TextButton(
-                  onPressed: () {
-                    // Aksi bantuan
-                  },
-                  child: const Text(
-                    'Bantuan ?',
-                    style: TextStyle(color: Colors.green, fontSize: 14),
+                  const SizedBox(height: 24),
+                  
+                  // Heading text from image
+                  const Text(
+                    'Login ke akun Anda',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w300,
+                      color: Color(0xFF444444),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 32),
 
-                const SizedBox(height: 40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Column(
+                      children: [
+                        // Email Input
+                        TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.email, color: Color(0xFF777777), size: 24),
+                            hintText: 'Email',
+                            hintStyle: const TextStyle(color: Color(0xFFAAAAAA), fontSize: 16),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFEEEEEE), width: 2),
+                            ),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue, width: 2),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
 
-                // Informasi
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Akses hanya untuk Dosen & Mahasiswa Universitas Islam Madura',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                        // Password Input
+                        TextField(
+                          obscureText: _obscureText,
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock, color: Color(0xFF777777), size: 24),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureText ? Icons.visibility : Icons.visibility_off,
+                                color: const Color(0xFF999999),
+                                size: 22,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
+                            hintText: 'Password',
+                            hintStyle: const TextStyle(color: Color(0xFFAAAAAA), fontSize: 16),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFEEEEEE), width: 2),
+                            ),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue, width: 2),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Login menggunakan akun gmail',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.grey, width: 1),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
+                        const SizedBox(height: 12),
+
+                        // Remember Me & Forgot Password
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Panduan login:',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                            Row(
+                              children: [
+                                Theme(
+                                  data: ThemeData(unselectedWidgetColor: const Color(0xFFDDDDDD)),
+                                  child: Checkbox(
+                                    value: _rememberMe,
+                                    activeColor: Colors.blue,
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        _rememberMe = val ?? false;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const Text(
+                                  'Biarkan tetap masuk',
+                                  style: TextStyle(fontSize: 14, color: Color(0xFF666666)),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Username: user@uim.ac.id',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            const Text(
-                              'Password: user123',
-                              style: TextStyle(fontSize: 12),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Lupa Password?',
+                                style: TextStyle(fontSize: 14, color: Colors.blueAccent),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Kontak Helpdesk:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Email: infouim@uim.ac.id',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      const Text(
-                        'WhatsApp: +62 821-1666-3563',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ),
+                        const SizedBox(height: 24),
 
-                const SizedBox(height: 24),
-
-                // Bahasa: ID / EN
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        // Aksi ganti bahasa ke Indonesia
-                      },
-                      child: const Text(
-                        'ID',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                        // Login Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                  builder: (context) => const MainPage(),
+                                ),
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF337AB7),
+                              foregroundColor: Colors.white,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2),
+                              ),
+                            ),
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 12),
+
+                        // Register Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFDCDCDC),
+                              foregroundColor: const Color(0xFF666666),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2),
+                              ),
+                            ),
+                            child: const Text(
+                              'Register',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Divider
+                        Row(
+                          children: [
+                            const Expanded(child: Divider(color: Color(0xFFEEEEEE), thickness: 2)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                'atau',
+                                style: TextStyle(color: Colors.grey.shade500, fontSize: 14),
+                              ),
+                            ),
+                            const Expanded(child: Divider(color: Color(0xFFEEEEEE), thickness: 2)),
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Social Logins (Matching Image exactly)
+                        _socialButton(
+                          iconContent: const Text(
+                            'f',
+                            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          label: 'Login dengan Facebook',
+                          color: const Color(0xFF3B5998),
+                        ),
+                        const SizedBox(height: 10),
+                        _socialButton(
+                          iconContent: const Text(
+                            'G',
+                            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          label: 'Login dengan Google',
+                          color: const Color(0xFFFF0000),
+                        ),
+                        const SizedBox(height: 10),
+                        _socialButton(
+                          iconContent: const Text(
+                            'Y',
+                            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          label: 'Login dengan Yahoo',
+                          color: const Color(0xFF800080),
+                        ),
+                        const SizedBox(height: 40),
+                      ],
                     ),
-                    const Text(' / '),
-                    TextButton(
-                      onPressed: () {
-                        // Aksi ganti bahasa ke Inggris
-                      },
-                      child: const Text(
-                        'EN',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
+
+  Widget _socialButton({
+    required Widget iconContent,
+    required String label,
+    required Color color,
+  }) {
+    return Container(
+      width: double.infinity,
+      height: 48,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(2),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 54,
+            child: Center(child: iconContent),
+          ),
+          Container(
+            width: 1,
+            height: 28,
+            color: Colors.white.withOpacity(0.3),
+          ),
+          Expanded(
+            child: Center(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 54),
+        ],
+      ),
+    );
+  }
 }
+
+
